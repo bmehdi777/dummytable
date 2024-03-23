@@ -1,4 +1,7 @@
+use crate::config;
+
 use clap::{Args, Parser, Subcommand};
+use colored::Colorize;
 
 /// A simple tool to fill or generate quickly a database with fake data.
 #[derive(Parser, Debug)]
@@ -47,4 +50,33 @@ pub struct FillScriptArgs {
     /// URL of the database to fill.
     #[arg(short = 'u', long)]
     db_url: Option<String>,
+}
+
+impl Cli {
+    pub fn handle(self) -> Self {
+        match &self.command {
+            Commands::GenerateConfig { path } => {
+                match config::Configuration::generate(path) {
+                    Ok(()) => {
+                        println!("{}", "[SUCCESS]".green());
+                    }
+                    Err(e) => {
+                        eprintln!("{} {}", "[ERROR]".red(), e);
+                    }
+                };
+            }
+            Commands::Fill { options } => {
+                match options {
+                    FillSubcommands::ByFile { path } => {
+                        let config = config::Configuration::read_from_file(path).unwrap();
+                        println!("{config:?}");
+                    },
+                    FillSubcommands::Inline { fill_script_args, occurrence } => {
+
+                    }
+                }
+            }
+        };
+        self
+    }
 }

@@ -5,6 +5,7 @@ use dummytable::cli;
 async fn main() -> Result<(), ()> {
     let args = cli::Cli::parse();
 
+    args.handle();
 
     Ok(())
 }
