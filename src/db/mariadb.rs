@@ -31,12 +31,8 @@ impl Database for MariaDB {
             let key = line.0.to_string();
             table_field.push_str(&format!(",{}", key));
             table_field_value.push_str(&format!(",:{}", key));
-        }
 
-        println!(
-            "INSERT INTO {} ({}) VALUES ({})",
-            table_name, table_field, table_field_value
-        );
+        }
 
         let test = params! { "customer_id" => "test"};
 

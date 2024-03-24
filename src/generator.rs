@@ -48,13 +48,35 @@ pub enum Datatype {
 }
 
 impl Datatype {
-    pub fn generate(&self) {
+    pub fn generate(&self) -> String {
         match &self {
-            Datatype::CHAR => Datatype::generate_char(),
-        };
-    }
-
-    fn generate_char() -> char {
-        'a'
+            Datatype::CHAR => todo!(),
+            Datatype::VARCHAR(size) => todo!(),
+            Datatype::BINARY(size) => todo!(),
+            Datatype::VARBINARY(size) => todo!(),
+            Datatype::TINYBLOB => todo!(),
+            Datatype::TINYTEXT => todo!(),
+            Datatype::TEXT(size) => todo!(),
+            Datatype::BLOB(size) => todo!(),
+            Datatype::MEDIUMTEXT => todo!(),
+            Datatype::MEDIUMBLOB => todo!(),
+            Datatype::LONGTEXT => todo!(),
+            Datatype::LONGBLOB => todo!(),
+            Datatype::BIT => todo!(),
+            Datatype::TINYINT => todo!(),
+            Datatype::BOOL | Datatype::BOOLEAN => todo!(),
+            Datatype::SMALLINT => todo!(),
+            Datatype::MEDIUMINT => todo!(),
+            Datatype::INT => todo!(),
+            Datatype::BIGINT => todo!(),
+            Datatype::FLOAT => todo!(),
+            Datatype::DOUBLE => todo!(),
+            Datatype::DECIMAL | Datatype::DEC => todo!(),
+            Datatype::DATE => todo!(),
+            Datatype::DATETIME(format) => todo!(),
+            Datatype::TIMESTAMP(format) => todo!(),
+            Datatype::TIME(format) => todo!(),
+            Datatype::YEAR => todo!()
+         }
     }
 }
