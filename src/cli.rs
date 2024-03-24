@@ -1,4 +1,6 @@
 use crate::config;
+use crate::db::{db::Database,mariadb};
+
 
 use clap::{Args, Parser, Subcommand};
 use colored::Colorize;
@@ -53,7 +55,7 @@ pub struct FillScriptArgs {
 }
 
 impl Cli {
-    pub fn handle(self) -> Self {
+    pub async fn handle(self) -> Self {
         match &self.command {
             Commands::GenerateConfig { path } => {
                 match config::Configuration::generate(path) {
@@ -69,7 +71,7 @@ impl Cli {
                 match options {
                     FillSubcommands::ByFile { path } => {
                         let config = config::Configuration::read_from_file(path).unwrap();
-                        println!("{config:?}");
+                        mariadb::MariaDB::fill(&config).await.unwrap();
                     },
                     FillSubcommands::Inline { fill_script_args, occurrence } => {
 

@@ -12,7 +12,7 @@ pub type LinesTable = HashMap<String, Datatype>;
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub enum Datatype {
     // Text type
-    CHAR(u32),
+    CHAR,
     VARCHAR(u32),
     BINARY(u32),
     VARBINARY(u32),
@@ -45,4 +45,16 @@ pub enum Datatype {
     TIMESTAMP(String),
     TIME(String),
     YEAR,
+}
+
+impl Datatype {
+    pub fn generate(&self) {
+        match &self {
+            Datatype::CHAR => Datatype::generate_char(),
+        };
+    }
+
+    fn generate_char() -> char {
+        'a'
+    }
 }
